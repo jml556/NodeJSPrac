@@ -1,15 +1,12 @@
-const http = require('http');
+const http = require('http')
+const express = require('express')
 
-function rqListener(req, res) {
-    console.log(req)
-    res.setHeader('Content-Type', 'text/html');
-    res.write('<html>')
-    res.write('<head><title>First practive node</title></head>')
-    res.write('<body><h1>Hello World!</h1></body>')
-    res.write('</html>')
-    res.end();
-}
+const app = express()
 
-const server = http.createServer(rqListener);
+app.use((req, res, next) => {
+    console.log('In the middlkeware')
+})
 
-server.listen(3005)
+const server = http.createServer(app)
+
+server.listen(3000)
